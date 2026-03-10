@@ -9,4 +9,12 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   title = 'my-app';
+  name = 'bao toan';
+  number = 120;
+
+  myfun = () => {
+    console.log('hello');
+    alert(`hello ${this.name}`);
+  };
 }
+console.log();
