@@ -9,6 +9,62 @@
       img {
         width: 150px;
       }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      thead {
+        background: #4f46e5;
+        color: white;
+      }
+
+      thead th {
+        padding: 12px;
+        text-align: center;
+        font-size: 15px;
+      }
+
+      tbody td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+      }
+
+      tbody tr:hover {
+        background: #f5f7ff;
+        transition: 0.2s;
+      }
+
+      img {
+        width: 60px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 6px;
+      }
+
+      button {
+        padding: 6px 12px;
+        border: none;
+        background: #ef4444;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      button:hover {
+        background: #dc2626;
+      }
+
+      td:first-child {
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
@@ -22,14 +78,16 @@
           <th>Tên truyện</th>
           <th>Tác giả</th>
           <th>Lượt xem</th>
-          <th>hanh dong</th>
+          <th>Hành động</th>
         </tr>
       </thead>
 
       <tbody>
         @for (story of stories; track story.title; let i = $index) {
           @if (stories.length === 0) {
-            <td>ko co truyen nao</td>
+            <tr>
+              <td colspan="6">Không có truyện nào</td>
+            </tr>
           }
           <tr>
             <td>{{ $index + 1 }}</td>
@@ -38,7 +96,7 @@
             <td>{{ story.author }}</td>
             <td>{{ story.views }}</td>
             <td>
-              <button style="color: red" (click)="handleClick($index + 1)">xoa</button>
+              <button (click)="handleClick($index + 1)">Xóa</button>
             </td>
           </tr>
         }
