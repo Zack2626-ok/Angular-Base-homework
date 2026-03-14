@@ -22,6 +22,7 @@
           <th>Tên truyện</th>
           <th>Tác giả</th>
           <th>Lượt xem</th>
+          <th>hanh dong</th>
         </tr>
       </thead>
 
@@ -36,6 +37,9 @@
             <td>{{ story.title }}</td>
             <td>{{ story.author }}</td>
             <td>{{ story.views }}</td>
+            <td>
+              <button style="color: red" (click)="handleClick($index + 1)">xoa</button>
+            </td>
           </tr>
         }
       </tbody>

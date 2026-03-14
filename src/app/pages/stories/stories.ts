@@ -57,4 +57,8 @@ export class Stories {
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1pWvg2jl2isfq91wX53aLqpVUWS_cHCCYbw&s',
     },
   ];
+
+  handleClick(id: number) {
+    alert(`id: ${id}`);
+  }
 }
