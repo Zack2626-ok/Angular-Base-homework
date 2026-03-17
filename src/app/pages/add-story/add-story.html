@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      form {
+        max-width: 400px;
+        margin: 40px auto;
+        padding: 25px;
+        border-radius: 12px;
+        background: #ffffff;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        font-family: Arial, sans-serif;
+      }
+
+      form div {
+        margin-bottom: 18px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      input {
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        outline: none;
+        transition: 0.2s;
+        font-size: 14px;
+      }
+
+      input:focus {
+        border-color: #4f46e5;
+        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #4f46e5, #6366f1);
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 14px rgba(79, 70, 229, 0.3);
+      }
+
+      button:active {
+        transform: scale(0.98);
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Thêm truyện tranh</h2>
+
+    <form [formGroup]="addForm" (ngSubmit)="submitForm()">
+      <div>
+        <label>Tên truyện</label>
+        <input type="text" formControlName="title" />
+      </div>
+
+      <div>
+        <label>Tác giả</label>
+        <input type="text" formControlName="author" />
+      </div>
+
+      <div>
+        <label>Lượt xem</label>
+        <input type="number" formControlName="views" />
+      </div>
+
+      <button type="submit">Thêm truyện</button>
+    </form>
+  </body>
+</html>
