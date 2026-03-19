@@ -1,0 +1,31 @@
+{
+  "stories": [
+    {
+      "id": "a63d",
+      "title": "123",
+      "author": "123",
+      "views": 123
+    },
+    {
+      "id": "bc0e",
+      "title": "",
+      "author": "",
+      "views": ""
+    },
+    {
+      "id": "af84",
+      "title": "123",
+      "author": "123",
+      "views": 333
+    }
+  ],
+  "products": [
+    {
+      "id": "4f92",
+      "name": "123",
+      "price": 123
+    }
+  ],
+  "users": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -10,15 +11,25 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class AddProducts {
   addProduct: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+  ) {
     this.addProduct = this.fb.group({
       name: '',
       price: 0,
-      category: '',
     });
   }
 
   submitForm = () => {
     console.log(this.addProduct.value);
+    this.http.post(`http://localhost:3000/products`, this.addProduct.value).subscribe({
+      next: () => {
+        alert('them san pham thanh cong');
+      },
+      error: () => {
+        alert('them san pham that bai');
+      },
+    });
   };
 }

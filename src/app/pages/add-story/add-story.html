@@ -72,6 +72,9 @@
       <div>
         <label>Tên truyện</label>
         <input type="text" formControlName="title" />
+        @if (title?.invalid) {
+          <p>ten truyen bat buoc nhap</p>
+        }
       </div>
 
       <div>
@@ -84,7 +87,7 @@
         <input type="number" formControlName="views" />
       </div>
 
-      <button type="submit">Thêm truyện</button>
+      <button [disabled]="loading" type="submit">{{ loading ? 'đang gửi' : 'Thêm truyện' }}</button>
     </form>
   </body>
 </html>

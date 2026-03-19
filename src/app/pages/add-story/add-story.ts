@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { validate } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-add-story',
@@ -9,15 +11,33 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class AddStory {
   addForm: FormGroup;
-  constructor(private fb: FormBuilder) {
+  loading = false;
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+  ) {
     this.addForm = this.fb.group({
-      title: ['', [Validators.required]],
+      title: ['', Validators.required],
       author: '',
-      views: 0,
+      views: '',
     });
   }
 
+  get title() {
+    return this.addForm.get('title');
+  }
+
   submitForm() {
-    console.log('form', this.addForm.value);
+    this.loading = true;
+    const data = this.addForm.value;
+    this.http.post(`http://localhost:3000/stories`, data).subscribe({
+      next: () => {
+        alert('them thanh cong');
+        this.loading = false;
+      },
+      error: () => {
+        alert('them that bai');
+      },
+    });
   }
 }
