@@ -1,64 +1,39 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-stories',
-  imports: [],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './stories.html',
   styleUrl: './stories.css',
 })
 export class Stories {
-  stories = [
-    {
-      title: 'One Piece',
-      author: 'Oda',
-      views: 100000,
-      image:
-        'https://anime.aircms.xyz/storage/images/dao-hai-tac/d61250d0c1670917fd783a1b48cbb29c17725408371772540837.webp',
-    },
-    {
-      title: 'Naruto',
-      author: 'Kishimoto',
-      views: 90000,
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzyYTSITSM9CGVQ5biQT-wHYsPwhcEWCLlHA&s',
-    },
-    {
-      title: 'Doraemon',
-      author: 'Fujiko F Fujio',
-      views: 70000,
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjB7yHNiFuUR5YlkUNmF0o4KBYxb3MELwBMQ&s',
-    },
-    {
-      title: 'Dragon Ball',
-      author: 'Toriyama Akira',
-      views: 1000000,
-      date: '10/02/2012',
-      category: 'abc',
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnL6tGAY_5l7EgaWZUHW1gZOAS9aW2PVIsLw&s',
-    },
-    {
-      title: 'Attack On Titan',
-      author: 'Isayama Hajime',
-      views: 75000,
-      date: '10/02/2009',
-      category: 'abc',
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSML4KIfoZAl6QtK_AGFCZe61aOCmp4S1gl3g&s',
-    },
-    {
-      title: 'Bleach',
-      author: 'Kubo Taito',
-      views: 100000,
-      date: '10/02/2010',
-      category: 'deg',
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1pWvg2jl2isfq91wX53aLqpVUWS_cHCCYbw&s',
-    },
-  ];
+  stories: any = [];
+
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+  ) {}
+  ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
+    this.http.get(`http://localhost:3000/stories`).subscribe({
+      next: (data) => {
+        // console.log(data);
+        this.stories = data;
+      },
+    });
+  }
 
   handleClick(id: number) {
-    alert(`id: ${id}`);
+    this.http.delete(`http://localhost:3000/stories/${id}`).subscribe({
+      next: () => {
+        this.stories = this.stories.filter((item: any) => item.id !== id);
+      },
+    });
   }
 }

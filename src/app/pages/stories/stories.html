@@ -94,6 +94,7 @@
             <td>{{ story.views }}</td>
             <td>
               <button (click)="handleClick($index + 1)">Xóa</button>
+              <button [routerLink]="['/edit', story.id]">Edit</button>
             </td>
           </tr>
         }

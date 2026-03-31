@@ -7,6 +7,7 @@ import { Stories } from './pages/stories/stories';
 import { AddStory } from './pages/add-story/add-story';
 import { AddProducts } from './pages/add-products/add-products';
 import { Register } from './pages/register/register';
+import { Edit } from './pages/lap8/lap8';
 
 export const routes: Routes = [
   { path: 'contact', component: Contact },
@@ -17,4 +18,5 @@ export const routes: Routes = [
   { path: 'add', component: AddStory },
   { path: 'addPro', component: AddProducts },
   { path: 'register', component: Register },
+  { path: 'edit/:id', component: Edit },
 ];
